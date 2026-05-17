@@ -5,10 +5,11 @@ on:
     branches:
       - main
   pull_request:
+  workflow_dispatch:
 
 jobs:
   test:
-    runs-on: windows-latest
+    runs-on: windows-2022
     steps:
       - uses: actions/checkout@v4
       - uses: actions/setup-node@v4
@@ -16,4 +17,8 @@ jobs:
           node-version: "24"
           cache: "npm"
       - run: npm ci
-      - run: npm test
+      # The full local test suite includes Windows shortcut / COM smoke tests that
+      # are meant for a real desktop session. Public CI only runs the release-safe
+      # contract tests and package surface checks.
+      - run: npm run test:ci
+      - run: npm pack --dry-run --json

@@ -30,7 +30,8 @@
     "codex-history": "./src/cli.js"
   },
   "scripts": {
-    "test": "node --test"
+    "test": "node --test",
+    "test:ci": "node --test --test-name-pattern \"product-files|readme|redaction|export|handoff|move-session|bridge\""
   },
   "engines": {
     "node": ">=24.0.0"
