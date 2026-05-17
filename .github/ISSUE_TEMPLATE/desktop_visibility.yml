@@ -1,0 +1,131 @@
+name: Desktop 历史会话不显示
+description: CLI 能看到，但 Codex Desktop 项目侧显示“暂无对话”或历史会话缺失时使用
+title: "desktop: "
+labels:
+  - upstream-desktop
+  - needs-info
+body:
+  - type: markdown
+    attributes:
+      value: |
+        这类问题很多时候是 Codex Desktop 自己的显示条件、项目路径匹配或本地状态差异造成的。请直接贴完整诊断文本，不要只贴“暂无对话”截图。维护者会按 `docs/feedback-triage.md` 分流。
+        
+        请不要粘贴密钥、`auth.json` 原文、账号令牌、token、`encrypted_content` 原文、完整本地历史文件或私有代理 URL 的 token query。
+  - type: input
+    id: version
+    attributes:
+      label: Codex Pro 版本
+      placeholder: v0.2.5
+    validations:
+      required: true
+  - type: input
+    id: os
+    attributes:
+      label: 系统版本
+      placeholder: Windows 11 24H2
+    validations:
+      required: true
+  - type: input
+    id: codex
+    attributes:
+      label: Codex Desktop 版本或大概更新时间
+      placeholder: Codex Desktop，版本未知 / 最近刚更新
+    validations:
+      required: true
+  - type: dropdown
+    id: install_method
+    attributes:
+      label: Codex Pro 安装方式
+      options:
+        - release 包 / 绿色包
+        - 仓库源码运行
+        - npm 包
+        - 不确定
+        - 其它
+    validations:
+      required: true
+  - type: dropdown
+    id: current_mode
+    attributes:
+      label: 当前模式
+      options:
+        - takeover_injection
+        - takeover_compatibility
+        - maintenance
+        - 不确定
+    validations:
+      required: true
+  - type: input
+    id: provider
+    attributes:
+      label: 当前 provider
+      description: 填写你希望 Desktop 当前显示历史会话的 provider，例如 openai / dal / apigather。
+      placeholder: dal
+    validations:
+      required: true
+  - type: input
+    id: project_path
+    attributes:
+      label: 不显示历史的项目路径
+      placeholder: D:\GitHubProject\oss-maintainer-hub
+    validations:
+      required: true
+  - type: dropdown
+    id: cli_visible
+    attributes:
+      label: CLI 是否能看到这些历史会话
+      options:
+        - 是，codex resume 能看到
+        - 否，CLI 也看不到
+        - 不确定
+    validations:
+      required: true
+  - type: textarea
+    id: diagnostics
+    attributes:
+      label: status / 历史完整诊断文本
+      description: 必填。直接粘贴完整输出即可，不需要手动整理内部字段。
+      render: text
+    validations:
+      required: true
+  - type: textarea
+    id: screenshot
+    attributes:
+      label: Desktop 截图或现象说明
+      description: 可贴项目侧“暂无对话”、Recent、CLI resume 的截图。
+    validations:
+      required: false
+  - type: textarea
+    id: recovery_steps
+    attributes:
+      label: 你已经尝试过的恢复步骤
+      placeholder: |
+        1. 关闭 Codex Desktop
+        2. 继续像平常一样打开 Codex
+        3. 在“历史”里点修复历史显示 / 重建历史索引
+        4. 仍不完整时再打开高级修复
+    validations:
+      required: true
+  - type: dropdown
+    id: opened_history
+    attributes:
+      label: 是否已经在 Codex 里点击“历史”
+      options:
+        - 是
+        - 否
+        - 不确定
+    validations:
+      required: true
+  - type: checkboxes
+    id: boundary
+    attributes:
+      label: 确认事项
+      options:
+        - label: 我理解 CLI 可见但 Desktop 不显示时，可能是 Codex Desktop 上游显示逻辑问题。
+          required: true
+        - label: 我理解本工具不会修改 updated_at，也不会通过改变排序来让旧会话进入前排。
+          required: true
+        - label: 我不会在 issue 里粘贴密钥、auth.json 原文、token、完整本地历史文件或 encrypted_content 原文。
+          required: true
+
+

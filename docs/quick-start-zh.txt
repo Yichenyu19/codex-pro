@@ -1,0 +1,73 @@
+Codex Pro 快速开始
+
+30 秒上手，只记住这一条主路径：
+
+1. 平时从哪里打开
+以后继续像平常一样打开：
+Codex
+增强能力会尽量自动附着；平时不需要改用新的日常入口。
+
+2. 历史不见了先点什么
+先等自动守护尝试修复。
+如果还没恢复，优先在 Codex 里打开：
+历史
+先点里面的“修复历史显示”。
+如果还没恢复，再按固定三步继续。
+
+3. 想看状态先点什么
+还是优先在 Codex 里打开：
+历史
+
+如果你是小白，到这里就够了。桌面上的 `Codex Pro.cmd` 只作为维护 / 救援入口保留。
+
+如果“历史”里还没恢复，默认按这三步处理：
+1. 先点“修复历史显示”
+2. 再点“重建历史索引”
+3. 还没恢复就点“打开高级修复”，再用开始菜单里的 Repair History
+
+开始菜单高级入口位置：
+
+- `开始菜单 -> Codex Pro`
+
+如果还想继续判断，开始菜单里会有这些辅助入口：
+
+- 看历史检查：`History Check.cmd`
+- 直接修历史：`Repair History.cmd`
+- 看保护状态：`Protection Status.cmd`
+- 一键更新：`Update Codex Pro.cmd`
+- 看这台机器能不能注入真实页面：`Injection Check.cmd`
+- 看快速开始：`Quick Start.txt`
+- 卸载：`Uninstall.cmd`
+
+卸载时会恢复被接管的原生 Codex 快捷方式；如果某个 Codex 入口是安装时自动创建的，卸载会把它移除。默认不会删除你的 Codex 历史、历史快照或仓库代码。
+
+如果你想手动修复或排障：
+
+查看日志：
+%USERPROFILE%\.codex-pro\launcher.log
+
+常见情况：
+
+- 如果日志里提到“当前先按兼容方式继续使用”，说明这次页面增强没有挂上去，但历史保护仍然生效；这时固定按三步处理：先点“修复历史显示”，再点“重建历史索引”，仍不完整时再用开始菜单里的 `Repair History.cmd` 和 `Protection Status.cmd`
+- 如果你需要更深入判断，再打开桌面的 `Codex Pro.cmd` 或开始菜单里的 `Injection Check.cmd`
+
+如果开始菜单里的 `Injection Check.cmd` 还不够，再运行：
+
+py launcher-python\launcher.py --diagnose-cdp
+
+普通用户优先直接双击：
+
+开始菜单里的 Injection Check.cmd
+
+诊断结果会缓存到：
+%USERPROFILE%\.codex-pro\cdp-diagnosis.json
+
+说明
+- 这个工具不会自动修改你的 provider、base_url 或登录方式。
+- 它不会上传你的历史、账号、本地登录文件（`auth.json`）或旧加密会话内容（`encrypted_content`）。
+- 它会使用一个可停止的本地轻量守护来检查历史状态变化，但不会注册开机自启。
+- 它支持一键检查并安装更新，更新后重新打开 Codex 即可生效。
+- 它主要做的是：保住历史、修复侧栏可见性、重建历史索引、提供删除撤销与恢复入口。
+- 它不能保证 Codex 上游问题 100% 不出现，但会尽量自动修，修不好也给你明确入口。
+
+

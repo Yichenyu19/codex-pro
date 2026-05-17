@@ -1,0 +1,159 @@
+name: Bug 报告
+description: 工具本身报错、崩溃、历史修复结果异常时使用
+title: "bug: "
+labels:
+  - bug
+  - needs-info
+body:
+  - type: markdown
+    attributes:
+      value: |
+        请尽量完整填写。缺少版本、系统、状态输出或日志时，通常无法判断是工具问题、Codex Desktop 问题，还是本地历史显示边界问题。维护者会按 `docs/feedback-triage.md` 分流。
+        
+        请不要粘贴密钥、`auth.json` 原文、账号令牌、token、`encrypted_content` 原文、完整本地历史文件或私有代理 URL 的 token query。
+  - type: input
+    id: version
+    attributes:
+      label: Codex Pro 版本
+      description: 例如 v0.2.5。桌面入口、维护入口或 CLI 版本请填写当前 release。
+      placeholder: v0.2.5
+    validations:
+      required: true
+  - type: dropdown
+    id: entrypoint
+    attributes:
+      label: 使用方式
+      options:
+        - 桌面 / 开始菜单 Codex
+        - codex-pro CLI
+        - 仓库源码运行
+        - 其它
+    validations:
+      required: true
+  - type: dropdown
+    id: install_method
+    attributes:
+      label: 安装方式
+      options:
+        - release 包 / 绿色包
+        - 仓库源码运行
+        - npm 包
+        - 不确定
+        - 其它
+    validations:
+      required: true
+  - type: input
+    id: os
+    attributes:
+      label: 系统版本
+      placeholder: Windows 11 24H2 / Windows 10 22H2
+    validations:
+      required: true
+  - type: dropdown
+    id: current_mode
+    attributes:
+      label: 当前模式
+      description: 如果不确定，请贴 `codex-pro status` 或“历史”面板状态文本。
+      options:
+        - takeover_injection
+        - takeover_compatibility
+        - maintenance
+        - 不确定
+    validations:
+      required: true
+  - type: dropdown
+    id: normal_codex
+    attributes:
+      label: 是否还能继续正常打开 Codex
+      options:
+        - 是
+        - 否
+        - 不确定
+    validations:
+      required: true
+  - type: dropdown
+    id: opened_history
+    attributes:
+      label: 是否已经在 Codex 里点击“历史”
+      options:
+        - 是
+        - 否
+        - 不确定
+    validations:
+      required: true
+  - type: dropdown
+    id: fixed_steps
+    attributes:
+      label: 是否已按固定三步尝试恢复
+      description: 固定三步是：修复历史显示 -> 重建历史索引 -> 打开高级修复。
+      options:
+        - 是，三步都试过
+        - 只试过一部分
+        - 还没试
+        - 不适用
+    validations:
+      required: true
+  - type: input
+    id: codex
+    attributes:
+      label: Codex 使用方式和版本
+      description: 例如 Codex Desktop / Codex CLI，以及版本号或大概更新时间。
+      placeholder: Codex Desktop，版本未知
+    validations:
+      required: true
+  - type: textarea
+    id: steps
+    attributes:
+      label: 复现步骤
+      description: 从正常打开 Codex、点击“历史”或执行 codex-pro 命令开始写，尽量按时间顺序。
+      placeholder: |
+        1. 关闭 Codex Desktop
+        2. 继续像平常一样打开 Codex
+        3. 打开“历史”或运行 `codex-pro status`
+        4. 点击修复历史后出现 ...
+    validations:
+      required: true
+  - type: textarea
+    id: actual
+    attributes:
+      label: 实际结果
+      description: 报错文本、截图文字、终端输出都可以贴这里。
+    validations:
+      required: true
+  - type: textarea
+    id: expected
+    attributes:
+      label: 预期结果
+    validations:
+      required: true
+  - type: textarea
+    id: diagnostics
+    attributes:
+      label: status / 历史诊断文本
+      description: 优先粘贴完整输出。CLI 可运行 `codex-pro status`；UI 请复制“历史”面板中的状态区文本。
+      render: text
+    validations:
+      required: true
+  - type: textarea
+    id: logs
+    attributes:
+      label: 日志或错误堆栈
+      description: 启动问题请贴 `%USERPROFILE%\.codex-pro\launcher.log` 的必要片段，CLI 问题请贴终端完整输出。不要粘贴密钥、`auth.json` 原文、token、完整历史文件或 `encrypted_content` 原文。
+      render: text
+    validations:
+      required: false
+  - type: checkboxes
+    id: boundary
+    attributes:
+      label: 确认事项
+      options:
+        - label: 我理解本工具只修复历史可见性和恢复路径，不处理登录、认证或 auth.json。
+          required: true
+        - label: 我理解含 encrypted_content 的历史会话跨 provider/account 后可能只能恢复可见性。
+          required: true
+        - label: 我理解本工具不会修改 updated_at，也不会通过改变排序来修复 Desktop 显示。
+          required: true
+        - label: 我不会在 issue 里粘贴密钥、auth.json 原文、token、完整本地历史文件或 encrypted_content 原文。
+          required: true
+
+

@@ -1,0 +1,49 @@
+{
+  "name": "codex-pro",
+  "version": "0.2.5",
+  "description": "Unofficial local Pro enhancement layer for Codex Desktop on Windows.",
+  "type": "module",
+  "files": [
+    "README.md",
+    "README_EN.md",
+    "README_ZH.md",
+    "README_GUI_ZH.md",
+    "docs",
+    "inject-ui/history-guard-ui.js",
+    "launcher-python/launcher.py",
+    "launcher-python/requirements.txt",
+    "scripts/Install-Codex-Pro.ps1",
+    "scripts/Uninstall-Codex-Pro.ps1",
+    "scripts/Install-Codex-Guard.ps1",
+    "scripts/Uninstall-Codex-Guard.ps1",
+    "scripts/validate-install-smoke.mjs",
+    "scripts/validate-history-continuity.mjs",
+    "scripts/validate-real-codex-state.mjs",
+    "scripts/validate-real-codex-ui.py",
+    "scripts/validate-release.ps1",
+    "src"
+  ],
+  "bin": {
+    "codex-pro": "./src/cli.js",
+    "codex-guard": "./src/cli.js",
+    "codex-provider": "./src/cli.js",
+    "codex-history": "./src/cli.js"
+  },
+  "scripts": {
+    "test": "node --test"
+  },
+  "engines": {
+    "node": ">=24.0.0"
+  },
+  "keywords": [
+    "codex",
+    "codex-desktop",
+    "history",
+    "recovery",
+    "windows",
+    "sessions",
+    "takeover",
+    "provider"
+  ],
+  "license": "MIT"
+}
